@@ -21,6 +21,7 @@ class Person {
     let name: String
     let gender: Character
     var age = 0
+    static let greating: String = "Olá, meu nome é"
     
     init(name: String, gender: Character) {
         self.name = name
@@ -28,9 +29,13 @@ class Person {
     }
     
     // MARK:- METHODS
+    static func isBaby(age: Int) -> Bool {
+        return age <= 3
+    }
+    
     
     func speack(sentence: String) {
-        if age <= 3 {
+        if Person.isBaby(age: age) {
             print("gugudadá")
         }else {
             print(sentence)
@@ -41,7 +46,6 @@ class Person {
         speack(sentence: "Olá, meu nome é \(name)!")
     }
 }
-
 
 class Job {
     
@@ -62,6 +66,9 @@ let jean = Person(name: "Jean Carlos", gender: "M")
 let duda = Person(name: "Maria Eduarda", gender: "F")
 let juan = Person(name: "Juan Vitor", gender: "M")
 let tchalinha = Person(name: "T'chala", gender: "M")
+
+Person.isBaby(age: 1)
+Person.greating
 
 jean.age = 34
 duda.age = 14
@@ -85,7 +92,7 @@ class Vehicle {
     
     // MARK:- PROPERTIES
     var model: String
-    
+
     // Tipo de variável computada, que apenas retorna um valor:
     var maxSpeed: Double {
         return 250
@@ -133,3 +140,25 @@ let car = Vehicle(model: "Honda Civic")
 car.speed = 500
 
 print(car.descript())
+
+print("=======================================================\n")
+
+
+// Herança: Permite que classes compartilhem atributos e métodos. Facilita no reaproveitanmento de código.
+
+
+public class Family {
+    var _members:Int = 2
+    var members:Int {
+        get {
+            return _members
+        }
+        set(newValue) {
+            if newValue >= 2 {
+                _members = newValue
+            } else {
+                print("error: cannot have family with less than 2 members")
+            }
+        }
+    }
+}
